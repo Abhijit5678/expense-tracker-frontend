@@ -44,7 +44,7 @@ const ExpenseChart = ({ type = 'pie' }) => {
               </Pie>
               <Tooltip
                 contentStyle={tooltipStyle}
-                formatter={(value) => `$${value.toFixed(2)}`}
+                formatter={(value) => `₹${value.toFixed(2)}`}
               />
               <Legend verticalAlign="bottom" height={36} wrapperStyle={{ color: axisColor }} />
             </PieChart>
@@ -74,11 +74,11 @@ const ExpenseChart = ({ type = 'pie' }) => {
           <BarChart data={trendData}>
             <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={gridColor} />
             <XAxis dataKey="month" axisLine={false} tickLine={false} tick={{ fill: axisColor, fontSize: 12 }} />
-            <YAxis axisLine={false} tickLine={false} tick={{ fill: axisColor, fontSize: 12 }} tickFormatter={(value) => `$${value}`} />
+            <YAxis axisLine={false} tickLine={false} tick={{ fill: axisColor, fontSize: 12 }} tickFormatter={(value) => `₹${value}`} />
             <Tooltip
               cursor={{ fill: 'rgba(148, 163, 184, 0.08)' }}
               contentStyle={tooltipStyle}
-              formatter={(value) => `$${value.toFixed(2)}`}
+              formatter={(value) => `₹${value.toFixed(2)}`}
             />
             <Bar dataKey="amount" fill="#4f8ff9" radius={[10, 10, 0, 0]} />
           </BarChart>

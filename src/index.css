@@ -156,6 +156,15 @@
     @apply inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[var(--shadow-hover)] active:scale-[0.98];
   }
 
+  .btn-primary:disabled,
+  .btn-secondary:disabled,
+  .btn-icon:disabled,
+  button:disabled {
+    cursor: not-allowed;
+    opacity: 0.72;
+    transform: none;
+  }
+
   .btn-secondary {
     background: var(--surface-elevated);
     color: var(--text-primary);
@@ -181,6 +190,109 @@
     @apply rounded-2xl;
   }
 
+  .money-loader-card {
+    position: relative;
+    overflow: hidden;
+    width: min(100%, 24rem);
+    min-height: 21rem;
+    background:
+      linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.72)),
+      radial-gradient(circle at 28% 22%, rgba(37, 99, 235, 0.15), transparent 34%),
+      radial-gradient(circle at 76% 72%, rgba(15, 159, 110, 0.14), transparent 30%);
+    border: 1px solid var(--border-strong);
+    box-shadow: var(--shadow-soft);
+    @apply flex flex-col items-center justify-center rounded-[var(--radius-card)] px-8 py-10 backdrop-blur-xl;
+  }
+
+  .dark .money-loader-card {
+    background:
+      linear-gradient(145deg, rgba(24, 36, 52, 0.95), rgba(17, 28, 40, 0.82)),
+      radial-gradient(circle at 28% 22%, rgba(103, 160, 255, 0.18), transparent 34%),
+      radial-gradient(circle at 76% 72%, rgba(76, 195, 138, 0.16), transparent 30%);
+  }
+
+  .money-loader-orbit {
+    position: relative;
+    display: grid;
+    height: 7.5rem;
+    width: 7.5rem;
+    place-items: center;
+  }
+
+  .money-loader-ring {
+    position: absolute;
+    inset: 0.35rem;
+    border-radius: 999px;
+    border: 2px solid rgba(37, 99, 235, 0.14);
+    border-top-color: var(--brand);
+    border-right-color: var(--success);
+    animation: loader-spin 1.25s linear infinite;
+  }
+
+  .money-loader-ring-delay {
+    inset: 1rem;
+    border-left-color: var(--warning);
+    border-right-color: rgba(37, 99, 235, 0.14);
+    animation-direction: reverse;
+    animation-duration: 1.8s;
+  }
+
+  .money-loader-core {
+    z-index: 1;
+    display: grid;
+    height: 4.3rem;
+    width: 4.3rem;
+    place-items: center;
+    border-radius: 1.35rem;
+    background: linear-gradient(135deg, var(--brand), var(--brand-strong));
+    color: #fff;
+    box-shadow: 0 22px 55px -28px rgba(37, 99, 235, 0.8);
+    animation: loader-pulse 1.9s ease-in-out infinite;
+  }
+
+  .money-loader-bars {
+    display: flex;
+    align-items: end;
+    gap: 0.45rem;
+    height: 2.1rem;
+    margin-top: 1.8rem;
+  }
+
+  .money-loader-bars span {
+    width: 0.45rem;
+    border-radius: 999px;
+    background: linear-gradient(180deg, var(--brand), var(--success));
+    animation: loader-bars 1s ease-in-out infinite;
+  }
+
+  .money-loader-bars span:nth-child(1) {
+    height: 0.9rem;
+  }
+
+  .money-loader-bars span:nth-child(2) {
+    height: 1.65rem;
+    animation-delay: 0.12s;
+  }
+
+  .money-loader-bars span:nth-child(3) {
+    height: 1.25rem;
+    animation-delay: 0.24s;
+  }
+
+  .money-loader-bars span:nth-child(4) {
+    height: 1.9rem;
+    animation-delay: 0.36s;
+  }
+
+  .mini-loader {
+    width: 1.15rem;
+    height: 1.15rem;
+    border-radius: 999px;
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    border-top-color: #fff;
+    animation: loader-spin 0.8s linear infinite;
+  }
+
   .fintech-scrollbar {
     scrollbar-width: thin;
     scrollbar-color: rgba(148, 163, 184, 0.45) transparent;
@@ -204,5 +316,35 @@
 
   100% {
     background-position: -200% 0;
+  }
+}
+
+@keyframes loader-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loader-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.06);
+  }
+}
+
+@keyframes loader-bars {
+  0%,
+  100% {
+    transform: scaleY(0.58);
+    opacity: 0.55;
+  }
+
+  50% {
+    transform: scaleY(1);
+    opacity: 1;
   }
 }

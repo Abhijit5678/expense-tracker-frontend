@@ -4,15 +4,19 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { Landmark, LogIn } from 'lucide-react';
 import ThemeToggle from '../components/ThemeToggle';
+import { InlineLoader } from '../components/States';
 
 const Login = () => {
   const [formData, setFormData] = useState({ username: '', password: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { loginUser } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
     const success = await loginUser(formData);
+    setIsSubmitting(false);
     if (success) {
       navigate('/');
     }
@@ -66,9 +70,10 @@ const Login = () => {
             whileHover={{ y: -2 }}
             whileTap={{ scale: 0.98 }}
             type="submit"
+            disabled={isSubmitting}
             className="btn-primary w-full py-3 text-lg"
           >
-            <LogIn size={20} /> Sign In
+            {isSubmitting ? <InlineLoader label="Signing in" /> : <><LogIn size={20} /> Sign In</>}
           </motion.button>
         </form>
 

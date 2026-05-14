@@ -24,11 +24,11 @@ const TransactionList = ({ limit, showFilters = true }) => {
   }
 
   const formatCurrency = (amount) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-    }).format(amount);
-  };
+  return new Intl.NumberFormat('en-IN', {
+    style: 'currency',
+    currency: 'INR',
+  }).format(amount);
+};
 
   return (
     <div className="surface-card-strong overflow-hidden p-6 md:p-7">

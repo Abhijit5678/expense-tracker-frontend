@@ -11,11 +11,11 @@ const CreditCardSection = () => {
   const [newCard, setNewCard] = useState({ cardName: '', statementDay: 1, dueDay: 15 });
 
   const formatCurrency = (amount) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-    }).format(amount);
-  };
+  return new Intl.NumberFormat('en-IN', {
+    style: 'currency',
+    currency: 'INR',
+  }).format(amount);
+};
 
   const handleAddCard = async (e) => {
     e.preventDefault();

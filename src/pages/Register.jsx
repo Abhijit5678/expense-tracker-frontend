@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { Landmark, UserPlus } from 'lucide-react';
 import ThemeToggle from '../components/ThemeToggle';
+import { InlineLoader } from '../components/States';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -12,12 +13,15 @@ const Register = () => {
     email: '',
     password: '',
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { registerUser } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
     const success = await registerUser(formData);
+    setIsSubmitting(false);
     if (success) {
       navigate('/');
     }
@@ -96,9 +100,10 @@ const Register = () => {
             whileHover={{ y: -2 }}
             whileTap={{ scale: 0.98 }}
             type="submit"
+            disabled={isSubmitting}
             className="w-full rounded-2xl bg-[linear-gradient(135deg,#0f9f6e,#15803d)] py-3 text-lg font-semibold text-white shadow-[0_20px_55px_-28px_rgba(15,159,110,0.7)] transition-all duration-200"
           >
-            <UserPlus size={20} className="mr-2 inline-flex" /> Register
+            {isSubmitting ? <InlineLoader label="Creating account" /> : <><UserPlus size={20} className="mr-2 inline-flex" /> Register</>}
           </motion.button>
         </form>
 

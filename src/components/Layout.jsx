@@ -6,7 +6,7 @@ import { useAuth } from '../context/AuthContext';
 import Sidebar from './Sidebar';
 import ThemeToggle from './ThemeToggle';
 import GlobalModals from './modals/GlobalModals';
-import { DashboardSkeleton, ErrorState, TableSkeleton } from './States';
+import { AppLoader, ErrorState } from './States';
 
 const mobileNavItems = [
   { name: 'Dashboard', path: '/', icon: LayoutDashboard },
@@ -31,7 +31,7 @@ const Layout = () => {
     }
 
     if (loading) {
-      return location.pathname === '/transactions' ? <TableSkeleton rows={7} /> : <DashboardSkeleton />;
+      return <AppLoader />;
     }
 
     return (

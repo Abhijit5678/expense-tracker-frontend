@@ -1,4 +1,36 @@
-import { AlertTriangle, Inbox } from 'lucide-react';
+import { AlertTriangle, Inbox, Landmark } from 'lucide-react';
+
+export const AppLoader = ({ title = 'Loading your workspace', description = 'Syncing your latest money data.' }) => (
+  <div className="flex min-h-[55vh] items-center justify-center px-4 py-12">
+    <div className="money-loader-card" role="status" aria-live="polite">
+      <div className="money-loader-orbit" aria-hidden="true">
+        <span className="money-loader-ring" />
+        <span className="money-loader-ring money-loader-ring-delay" />
+        <span className="money-loader-core">
+          <Landmark size={30} />
+        </span>
+      </div>
+      <div className="mt-7 text-center">
+        <h3 className="text-lg font-extrabold text-[color:var(--text-primary)]">{title}</h3>
+        <p className="mt-2 max-w-xs text-sm text-[color:var(--text-secondary)]">{description}</p>
+      </div>
+      <div className="money-loader-bars" aria-hidden="true">
+        <span />
+        <span />
+        <span />
+        <span />
+      </div>
+      <span className="sr-only">{title}</span>
+    </div>
+  </div>
+);
+
+export const InlineLoader = ({ label = 'Loading' }) => (
+  <span className="inline-flex items-center justify-center gap-2">
+    <span className="mini-loader" aria-hidden="true" />
+    <span>{label}</span>
+  </span>
+);
 
 export const EmptyState = ({ title, description, action, icon: Icon = Inbox }) => (
   <div className="surface-card-strong flex min-h-52 flex-col items-center justify-center px-6 py-10 text-center">

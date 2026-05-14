@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { TrendingUp, TrendingDown, DollarSign, Target, AlertCircle } from 'lucide-react';
+import { TrendingUp, TrendingDown, IndianRupee, Target, AlertCircle } from 'lucide-react';
 import { useAppContext } from '../context/AppContext';
 import { motion } from 'framer-motion';
 import CountUpValue from './CountUpValue';
@@ -9,11 +9,11 @@ const DashboardCards = () => {
   const [budgetInput, setBudgetInput] = useState('');
 
   const formatCurrency = (amount) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-    }).format(amount);
-  };
+  return new Intl.NumberFormat('en-IN', {
+    style: 'currency',
+    currency: 'INR',
+  }).format(amount);
+};
 
   const cardHover = {
     y: -6,
@@ -34,7 +34,7 @@ const DashboardCards = () => {
             <p className="mt-1 text-sm text-blue-200/85">Spendable after income and expense flow</p>
           </div>
           <div className="rounded-2xl bg-white/16 p-3 backdrop-blur">
-            <DollarSign size={20} className="text-white" />
+            <IndianRupee size={20} className="text-white" />
           </div>
         </div>
         <div className="relative z-10">
